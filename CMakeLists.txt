@@ -63,8 +63,14 @@ set(PUBLIC_HEADERS
 
 add_library(cppcodec OBJECT ${PUBLIC_HEADERS}) # unnecessary for building, but makes headers show up in IDEs
 set_target_properties(cppcodec PROPERTIES LINKER_LANGUAGE CXX)
-add_subdirectory(tool)
-add_subdirectory(example)
+
+if (BUILD_TOOLS)
+	add_subdirectory(tool)
+endif()
+
+if (BUILD_EXAMPLES)
+	add_subdirectory(example)
+endif()
 
 if (BUILD_TESTING)
     add_subdirectory(test)
